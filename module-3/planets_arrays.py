@@ -1,6 +1,7 @@
 # planets_arrays_starter.py -- the ten planets from exotemp.py, ready to become numpy arrays (Pod 4).
 # Copy this file to planets_arrays.py and work on the copy.
 from math import pi
+import numpy as np
 
 SIGMA = 5.67e-8          # Stefan-Boltzmann constant, W m^-2 K^-4
 L_SUN = 3.8e26           # solar luminosity, W
@@ -11,6 +12,8 @@ name = ["Earth", "Mars", "HD 209458 b", "51 Peg b", "TRAPPIST-1 e",
 lum = [1.0, 1.0, 1.6, 1.3, 0.00055, 0.79, 0.58, 0.34, 1.2, 0.0016]          # star luminosity, solar units
 dist_au = [1.000, 1.524, 0.047, 0.052, 0.029, 0.85, 0.0154, 0.031, 1.046, 0.0485]   # planet distance, AU
 
+L = np.array(lum) * L_SUN  # solar luminosity, W
+d = np.array(dist_au) * AU # meters per AU
 
 def t_eq(L, d):
     """Equilibrium temperature (K) of a planet at distance d (m) from a star of luminosity L (W).
@@ -19,6 +22,8 @@ def t_eq(L, d):
     """
     return (L / (16 * pi * SIGMA * d**2)) ** 0.25
 
+T = t_eq(L * 3.8e26, d * 1.496e11)
+print(T)
 
 if __name__ == "__main__":
     # Last week's way: one planet at a time.
