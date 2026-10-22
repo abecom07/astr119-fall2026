@@ -24,7 +24,7 @@ def multitab(n):
     for i in range(1, n + 1):
         for j in range(1, n + 1):
             entry = i * j
-            print(f"{entry}", end="   ")
+            print(f"{entry:^4}", end=" ")
         print()
 
     return None
