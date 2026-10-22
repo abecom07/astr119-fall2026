@@ -4,6 +4,15 @@ import numpy as np
 from matplotlib.pyplot import imread, imsave
 
 I = imread("module-3/clean_io_small.png")     # rows, columns, 3 colour channels; values 0.0 to 1.0
+print(I.size)
 
+J = I.copy()
+J[20:40, 20:40, :] = 1.0
+J[356, :, :] = 0.0
+
+K = I.copy()
+K = 1 - K
+imsave("module-3/pixels_out.png", J)
+imsave("module-3/pixels_out2.png", K)
 if __name__ == "__main__":
     print("shape:", I.shape)
