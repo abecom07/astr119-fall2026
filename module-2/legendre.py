@@ -31,7 +31,26 @@ def legpoly(n,x):
     ### THIS IS WHERE YOU COME IN
     ### USE AS MANY LINES AS YOU NEED
     ### USE A FOR LOOP OR WHILE LOOP, WHICHEVER YOU LIKE
-    y = None
+    # TODO(human):
+    #   1. Base cases: if n is 0, y = P_0(x). If n is 1, y = P_1(x).
+    #   2. Otherwise keep two variables: one for P_{k-1}(x), one for P_k(x).
+    #      Start them at P_0 and P_1.
+    #   3. Loop over k. On each pass, use the recursion in the docstring
+    #      to compute P_{k+1}(x) from the two variables.
+    #   4. Shift forward: "previous" <- "current", "current" <- new value.
+    #   5. Pick the loop limits so the last pass produces P_n, then set y.
+    if n == 0:
+        y = 1.0
+    elif n == 1:
+        y = x
+    else:
+        P_previous = 1.0
+        P_current = x
+        for k in range(1, n):
+            P_next = ((2*k + 1) * x * P_current - k * P_previous) / (k + 1)
+            P_previous = P_current
+            P_current = P_next
+        y = P_next
     ###
 
     return y
