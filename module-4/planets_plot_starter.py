@@ -1,5 +1,5 @@
 # planets_plot_starter.py -- the ten planets as arrays, ready to plot (Pod 6). Copy this file to planets_plot.py and work on the copy.
-# Run from the repository folder:  python module-3/planets_plot.py
+# Run from the repository folder:  python module-4/planets_plot.py
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -22,5 +22,5 @@ if __name__ == "__main__":
     T = t_eq(lum * L_SUN, dist * AU)
     fig, ax = plt.subplots()
     ax.scatter(dist, T)
-    fig.savefig("module-3/planets.png", dpi=150)
-    print("wrote module-3/planets.png")
+    fig.savefig("module-4/planets.png", dpi=150)
+    print("wrote module-4/planets.png")
