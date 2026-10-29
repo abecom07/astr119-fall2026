@@ -16,11 +16,20 @@ dist = np.array([1.000, 1.524, 0.047, 0.052, 0.029, 0.85, 0.0154, 0.031, 1.046, 
 def t_eq(L, d):
     """Equilibrium temperature (K) at distance d (m) from a star of luminosity L (W)."""
     return (L / (16 * np.pi * SIGMA * d**2)) ** 0.25
+d = np.linspace(0.01, 2.0, 200)
 
 
 if __name__ == "__main__":
     T = t_eq(lum * L_SUN, dist * AU)
+    T_curve = t_eq(L_SUN, d * AU)
     fig, ax = plt.subplots()
     ax.scatter(dist, T)
+    ax.plot(d, T_curve, color='red', label='Sun')
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.legend()
+    ax.set_xlabel("Distance (AU)")
+    ax.set_ylabel("Equilibrium Temperature (K)")
+    for n, x, y in zip(name, dist, T): ax.annotate(n, (x, y), fontsize=7)
     fig.savefig("module-4/planets.png", dpi=150)
     print("wrote module-4/planets.png")
