@@ -29,6 +29,16 @@ def pixelfix(I):
 
     ### YOUR WORK GOES HERE (with the agent, under the Protocol, in stages:
     ### 1. find the bad pixels and print how many;
+    i = 0
+    j = 0
+    count = 0
+    for i in range(Iq.shape[0]):
+        for j in range(Iq.shape[1]):
+            if Iq[i, j, 0] == 1 and Iq[i, j, 1] == 0 and Iq[i, j, 2] == 0:
+                Iq[i, j] = np.mean([Iq[i+1, j], Iq[i-1, j], Iq[i, j+1], Iq[i, j-1]], axis=0)
+                count += 1
+    print(f"Total bad pixels found: {count}")
+
     ### 2. paint them white and look at the result;
     ### 3. replace the white with the average of the up/down/left/right
     ###    neighbors. Then try solo_corrupt_io_small.png.)
