@@ -29,13 +29,21 @@ def pixelfix(I):
 
     ### YOUR WORK GOES HERE (with the agent, under the Protocol, in stages:
     ### 1. find the bad pixels and print how many;
-    i = 0
-    j = 0
     count = 0
     for i in range(Iq.shape[0]):
         for j in range(Iq.shape[1]):
             if Iq[i, j, 0] == 1 and Iq[i, j, 1] == 0 and Iq[i, j, 2] == 0:
-                Iq[i, j] = np.mean([Iq[i+1, j], Iq[i-1, j], Iq[i, j+1], Iq[i, j-1]], axis=0)
+                good = []
+                up = Iq[i-1, j] if i > 0 else None
+                down = Iq[i+1, j] if i < Iq.shape[0] - 1 else None
+                left = Iq[i, j-1] if j > 0 else None
+                right = Iq[i, j+1] if j < Iq.shape[1] - 1 else None
+
+                for neighbor in [up, down, left, right]:
+                    if neighbor is not None:
+                        good.append(neighbor)
+
+                Iq[i, j] = np.mean(good, axis=0)
                 count += 1
     print(f"Total bad pixels found: {count}")
 
