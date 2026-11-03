@@ -39,5 +39,5 @@ if __name__ == "__main__":
     a2.set_yscale("log")
     for n, x, y in zip(name, dist, T): a2.annotate(n, (x, y), fontsize=7)
     for n, x, y in zip(name, dist, T): a1.annotate(n, (x, y), fontsize=7)
-    fig.savefig("module-4/planets.png", dpi=150)
+    fig.savefig("module-4/planets.png", dpi=1000)
     print("wrote module-4/planets.png")
