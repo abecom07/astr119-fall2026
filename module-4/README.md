@@ -9,4 +9,4 @@ What goes here:
 
 - `tables.ipynb`: your own copy of `tables_starter.ipynb` (pandas on the exoplanet catalog); the two data files it reads are in `data/`.
 
-Starter files: `planets_plot_starter.py`, `distributions_starter.ipynb`, `tables_starter.ipynb`, `squarespare_starter.py`. Data: `data/exoplanets_small.csv` (sixteen hot Jupiters) and `data/exoplanet_eu_catalog_2024-02.csv` (the exoplanet.eu catalog, February 2024). The galaxy notebook and the catalog it reads are added to this folder later in the module; `git pull` when told.
+Starter files: `planets_plot_starter.py`, `distributions_starter.ipynb`, `tables_starter.ipynb`, `squarespare_starter.py`. Data: `data/exoplanets_small.csv` (sixteen hot Jupiters) and `data/exoplanet_eu_catalog_2024-02.csv` (the exoplanet.eu catalog, February 2024).
