@@ -61,6 +61,14 @@ def visualize_danger(n, R_new=3, saveas=''):
 
     # Do the core plotting commands here
     ## use the functions defined above to calculate the line segments to plot
+    ax = fh.add_subplot(1, 1, 1)
+    fractions = np.linspace(0, 1, n + 1)        # n equal slices of paper -> n+1 boundaries
+    radii = product_visible(fractions, R_new)   # boundary radii, from r0 = 1 out to R_new
+
+    ax.add_patch(plt.Circle((0, 0), 1, color='gray'))   # cardboard core, radius r0
+    for r in radii:
+        ax.add_patch(plt.Circle((0, 0), r, fill=False,
+                                edgecolor='black', linewidth=1.5))
 
     # Set axes properties here for a better view
     ## things like axis limits and tick marks
