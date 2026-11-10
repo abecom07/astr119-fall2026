@@ -17,7 +17,9 @@ def product_remaining(r, R_new=3):
     -------
     Current remaining length as fraction of original length of new roll.
     """
-    return (r ** 2 - 1) / (R_new ** 2 - 1) ### REPLACE WITH CORRECT FORMULA
+    x = r / R_new
+    a = 1 / R_new
+    return  (x**2 - (a)**2) / (1 - (a)**2) ### REPLACE WITH CORRECT FORMULA
 
 def product_visible(el_frac, R_new=3):
     """Visible roll radius by fraction of remaining product.
@@ -34,8 +36,12 @@ def product_visible(el_frac, R_new=3):
     Current visible radius of roll, in units of r0, the cardboard cylinder
     radius.
     """
-    return np.sqrt(el_frac * (R_new ** 2 - 1) + 1) ### REPLACE WITH CORRECT FORMULA
+    a = 1 / R_new
+    return np.sqrt(el_frac * (1 - (a)**2) + (a)**2) ### REPLACE WITH CORRECT FORMULA
 
+print("Case r = R0:", product_remaining(3))
+print("Case r = r0:", product_remaining(1))
+print("Case el_frac = 3/5:", product_visible(3/5))
 def visualize_danger(n, R_new=3, saveas=''):
     """Use n line segments of equal product to visualize paradox of the roll.
 
@@ -63,7 +69,7 @@ def visualize_danger(n, R_new=3, saveas=''):
     ## use the functions defined above to calculate the line segments to plot
     ax = fh.add_subplot(1, 1, 1)
     fractions = np.linspace(0, 1, n + 1)        # n equal slices of paper -> n+1 boundaries
-    radii = product_visible(fractions, R_new)   # boundary radii, from r0 = 1 out to R_new
+    radii = R_new * product_visible(fractions, R_new)   # boundary radii, from r0 = 1 out to R_new
 
     ax.add_patch(plt.Circle((0, 0), 1, color='gray'))   # cardboard core, radius r0
     for r in radii:
@@ -72,10 +78,14 @@ def visualize_danger(n, R_new=3, saveas=''):
 
     # Set axes properties here for a better view
     ## things like axis limits and tick marks
+    lim = 1.15 * R_new                 # show whole roll plus a 15% margin
+    ax.set_xlim(-lim, lim)
+    ax.set_ylim(-lim, lim)
+    ax.set_aspect('equal')             # circles stay round in an 8x6 figure
 
     # Stylize and annotate
     ## things like axes labels, font sizes, or any other finishing touches
-
+    ax.set_title(f'n = {n} equal segments of paper on a roll', fontsize=16)
     ######################
 
     # Finally, show on screen and/or save to file
